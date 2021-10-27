@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useRef} from 'react';
 import Card from '../UI/Card';
 import classes from './AddUser.module.css';
 import Button from '../UI/Button';
@@ -8,6 +8,8 @@ const AddUser = (props) => {
     const [enteredUsername, setEnteredUsername] = useState('');
     const [enteredAge, setEnteredAge] = useState('');
     const [error, setError] = useState('');
+    const nameInputRef =useRef();
+    const ageInputRef = useRef();
 
 
     const addUserHandler = (event) => {
@@ -56,9 +58,9 @@ const AddUser = (props) => {
             <Card className={classes.input}>
                 <form onSubmit={addUserHandler}>
                         <label htmlFor="username">User Name</label>
-                        <input id="username" type="text" value={enteredUsername} onChange={usernameChangerHandler}></input>
+                        <input id="username" type="text" value={enteredUsername} onChange={usernameChangerHandler} ref={nameInputRef}></input>
                         <label htmlFor="age">Age (Years)</label>
-                        <input id="age" type="number" value={enteredAge} onChange={ageChangeHandler}></input>
+                        <input id="age" type="number" value={enteredAge} onChange={ageChangeHandler} ref={ageInputRef}></input>
 
                         <Button type="submit">Add User</Button>
                 </form>
